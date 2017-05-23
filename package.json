@@ -1,0 +1,29 @@
+{
+  "name": "pifpafpouf",
+  "version": "1.0.0",
+  "description": "Pif paf pouf dans ta gueule.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/keysim/pifpafpouf.git"
+  },
+  "keywords": [
+    "DrRobotnik",
+    "Mean",
+    "Bean",
+    "Machine",
+    "keysim",
+    "game",
+    "2D",
+    "multiplayer"
+  ],
+  "author": "KeySim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keysim/pifpafpouf/issues"
+  },
+  "homepage": "https://github.com/keysim/pifpafpouf#readme"
+}
