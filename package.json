@@ -25,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/keysim/pifpafpouf/issues"
   },
-  "homepage": "https://github.com/keysim/pifpafpouf#readme"
+  "homepage": "https://github.com/keysim/pifpafpouf#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jcanvas": "^16.7.3",
+    "jquery": "^3.2.1",
+    "socket.io": "^2.0.1"
+  }
 }
