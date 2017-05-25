@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/keysim/pifpafpouf#readme",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "express": "^4.15.3",
     "jcanvas": "^16.7.3",
     "jquery": "^3.2.1",
