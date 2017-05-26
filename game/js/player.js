@@ -34,14 +34,14 @@ class Player {
         this.explosionList = [];
         this.explodeLvl = 0;
     }
-    update() {
+    update(game) {
         for (var cell of this.background) // BACKGROUND TODO Optimized background
             game.canvas.drawRect(cell);
 
         for (var y = 0; y < GAME.H; y++) // GRID PRINT
             for (var x = 0; x < GAME.W; x++)
                 game.drawBlock(this.offset.x + (x * GAME.SIZE), this.offset.y + (y * GAME.SIZE), this.grid[y][x]);
-        this.piece.draw();
+        this.piece.draw(game);
         if(!this.falling && !this.piece.inMove && !this.boom && !this.explosionList.length){
             this.explodeLvl = 0;
             if(!this.piece.next()) {
@@ -49,7 +49,7 @@ class Player {
                 this.lose = true;
             }
         }
-        this.viewer();
+        this.viewer(game);
     }
     inputHandler() {
         var keys = this.input.toTab();
@@ -79,7 +79,7 @@ class Player {
             }
         }
     }
-    viewer() {
+    viewer(game) {
         game.drawBlock(this.offset.x + ((GAME.W + 1) * GAME.SIZE), this.offset.y + (GAME.SIZE), GAME.STACK[this.piece.stackNo + 1]);
         game.drawBlock(this.offset.x + ((GAME.W + 1) * GAME.SIZE), this.offset.y + (GAME.SIZE * 2), GAME.STACK[this.piece.stackNo]);
     }

@@ -1,0 +1,56 @@
+.navbar-nav>li>a {
+    line-height: 35px;
+    font-size: 18px;
+}
+
+.navbar-right {
+    margin-right: 0;
+}
+
+.disconnect {
+    cursor: pointer;
+}
+
+.nav>li {
+    text-align: center;
+}
+
+.nav-center {
+    color: black;
+    position:absolute;
+    left:50%;
+    margin-left:-75px;
+}
+
+.title {
+    cursor: pointer;
+    margin-top: 16px;
+    font-family: cursive;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.collapse {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.navbar-collapse.in {
+    overflow-x: hidden;
+}
+
+.navbar-header {
+    height: 65px;
+    padding: 15px;
+}
+.navbar-toggle {
+    margin-top: 0;
+}
+
+.fa-warning {
+    color: red;
+}
+
+.fa-battery-half {
+    color: red;
+}

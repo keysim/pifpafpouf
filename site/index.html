@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>Pifpafpouf</title>
+    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <header></header>
+    <div class="container">
+        <div ng-view></div>
+    </div>
+    <footer></footer>
+
+    <script src="http://localhost:1234/socket.io/socket.io.js"></script>
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-route/angular-route.min.js"></script>
+    <script src="/node_modules/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/node_modules/angular-socket-io/socket.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/jcanvas/jcanvas.min.js"></script>
+    <script src="main.js"></script>
+    <script src="router.js"></script>
+    <script src="controllers/footer.controller.js"></script>
+    <script src="controllers/header.controller.js"></script>
+    <script src="controllers/home.controller.js"></script>
+    <script src="controllers/login.controller.js"></script>
+    <script src="controllers/game.controller.js"></script>
+    <script src="controllers/options.controller.js"></script>
+    <script src="/game/js/jquery.playSound.js"></script>
+    <script src="/game/js/gamepad.js"></script>
+    <script src="/game/js/input.js"></script>
+    <script src="/game/js/piece.js"></script>
+    <script src="/game/js/player.js"></script>
+    <script src="/game/game.js"></script>
+</body>
+</html>

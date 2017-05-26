@@ -9,9 +9,16 @@
             ).appendTo('body');
         },
         playSound: function () {
+            var loop = arguments[1];
             var sound = $("#" + arguments[0] + "")[0];
             sound.currentTime = 0;
             sound.play();
+            if(loop) {
+                sound.addEventListener('ended', function () {
+                    this.currentTime = 0;
+                    this.play();
+                }, false);
+            }
         },
         stopSound: function () {
             $(".sound-player").remove();

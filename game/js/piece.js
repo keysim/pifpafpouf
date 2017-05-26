@@ -37,7 +37,7 @@ class Piece {
         }
     }
     fall() {
-        if(game.frameNo > 10 && this.inMove){ // FALL
+        if(this.inMove){ // FALL
             for(var part of this.parts)
                 if(!this.player.grid[this.y + part.y + 1] || this.player.grid[this.y + part.y + 1][this.x + part.x] !== 0)
                     return this.release();
@@ -53,7 +53,7 @@ class Piece {
         this.parts = [];
         return true;
     }
-    draw() {
+    draw(game) {
         for(var part of this.parts)
             game.drawBlock(this.player.offset.x + ((this.x + part.x) * GAME.SIZE), this.player.offset.y + ((this.y + part.y) * GAME.SIZE), part.type);
     }

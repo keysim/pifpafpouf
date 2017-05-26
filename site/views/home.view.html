@@ -1,0 +1,14 @@
+<h1 style="text-align: center">The game</h1>
+<br>
+<div class="row center"> <!-- SITE & API -->
+    <div class="card" ng-repeat="person in team.web">
+        <div class="header-bg">
+            <h3>{{person.name}}</h3>
+        </div>
+        <div class="avatar">
+            <img src="" ng-src="{{'img/team/' + person.img}}" alt="keysim" />
+        </div>
+
+        <p class="card-desc">{{person.student_id}}<br>{{person.role}}</p>
+    </div>
+</div>

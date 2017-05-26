@@ -27,10 +27,18 @@
   },
   "homepage": "https://github.com/keysim/pifpafpouf#readme",
   "dependencies": {
+    "angular": "^1.6.4",
+    "angular-cookies": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-socket-io": "^0.7.0",
+    "body-parser": "^1.17.2",
     "bootstrap": "^3.3.7",
     "express": "^4.15.3",
+    "font-awesome": "^4.7.0",
     "jcanvas": "^16.7.3",
     "jquery": "^3.2.1",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.10.2",
     "socket.io": "^2.0.1"
   }
 }

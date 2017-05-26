@@ -1,0 +1,41 @@
+<h1 class="modal-title text-center">Log in</h1>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form class="form-horizontal" onsubmit="return false">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="login">Login</label>
+                        <div id="login" class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Enter your login" ng-model="login"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group form-group-lg">
+                        <label class="control-label" for="password">Password</label>
+                        <div id="password" class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" placeholder="Enter your password" ng-model="pwd"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <button id="login_btn" type="submit" class="btn btn-block btn-lg" ng-class="loginClass" ng-click="log()" ng-bind-html="loginBtn | to_trusted"></button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div><a href="register">No account yet ? Create a new account</a></div>
+            </div>
+            <br>
+        </form>
+    </div>
+</div>

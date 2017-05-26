@@ -4,11 +4,11 @@ var gamepad = new Gamepad();
 gamepad.start();
 
 var GAME = {
-    SCREEN_W: 900,
-    SCREEN_H: 600,
+    SCREEN_W: 1080,
+    SCREEN_H: 720,
     W:6,
     H:13,
-    SIZE:50,
+    SIZE:60,
     DEFAULT_X:3,
     DEFAULT_Y:1,
     TIC:10,
@@ -28,30 +28,29 @@ function generateStack(number) {
 if(GAME.TYPES > GAME.COLORS.length)
     console.log("[ERROR] Too much type. please fill more color or decrease the Types number.");
 
-var players = [];
-players.push(new Player(0, -50, "right"));
-//players.push(new Player(450, -50, "right"));
 
 for(var sound of GAME.SOUNDS)
-    $.createSound(sound, '/assets/sounds/' + sound + '.wav');
-
+    $.createSound(sound, 'game/sounds/' + sound + '.wav');
+$.createSound("music", '/game/sounds/wil.mp3');
+//$.playSound("music", 1);
 class Game {
-    constructor(){
-        this.canvas = $("#game");
+    constructor(players){
+        this.canvas = $("#canvas");
+        this.players = players;
     }
     start() {
         this.canvas.width(GAME.SCREEN_W);
         this.canvas.height(GAME.SCREEN_H);
         this.canvas.prop({width:GAME.SCREEN_W, height:GAME.SCREEN_H});
         this.frameNo = 0;
-        setInterval(Game.update, GAME.TIC);
+        setInterval(this.update, GAME.TIC, this);
     }
     drawMenu() { // TODO Menu with bootstrap
     }
     drawBlock(x, y, type){
         if(type == 0)
             return;
-        game.canvas.drawRect({
+        this.canvas.drawRect({
             fillStyle: GAME.COLORS[type],
             strokeStyle: 'black',
             strokeWidth: 1,
@@ -61,39 +60,32 @@ class Game {
             height: GAME.SIZE - 20
         });
     }
-    static update() {
+    everyInterval(n) {
+        return ((this.frameNo / n) % 1 == 0);
+    }
+    update(that) {
         gamepad.update();
-
-        //padListener();
-        if(everyInterval(80)) { // FALLING
-            for(i = 0; players[i]; i++)
-                players[i].piece.fall();
+        if(that.everyInterval(80)) { // FALLING
+            for(i = 0; that.players[i]; i++)
+                that.players[i].piece.fall();
         }
-        if(everyInterval(10)) { // MOVING RIGHT / LEFT
-            for(i = 0; players[i]; i++)
-                players[i].inputHandler();
-            for(i = 0; players[i]; i++)
-                players[i].fall();
+        if(that.everyInterval(10)) { // MOVING RIGHT / LEFT
+            for(i = 0; that.players[i]; i++)
+                that.players[i].inputHandler();
+            for(i = 0; that.players[i]; i++)
+                that.players[i].fall();
         }
-        if(everyInterval(8)) {
-            for(i = 0; players[i]; i++)
-                players[i].fall();
+        if(that.everyInterval(8)) {
+            for(i = 0; that.players[i]; i++)
+                that.players[i].fall();
         }
-        if(everyInterval(20)) {
-            for(i = 0; players[i]; i++)
-                players[i].explode();
+        if(that.everyInterval(20)) {
+            for(i = 0; that.players[i]; i++)
+                that.players[i].explode();
         }
-        game.canvas.clearCanvas();
-        for(var i = 0; players[i]; i++)
-            players[i].update();
-        game.frameNo++;
+        that.canvas.clearCanvas();
+        for(var i = 0; that.players[i]; i++)
+            that.players[i].update(that );
+        that.frameNo++;
     }
 }
-var game = new Game();
-game.start();
-
-function everyInterval(n) {
-    return ((game.frameNo / n) % 1 == 0);
-}
-
-// TODO Music and Pause
