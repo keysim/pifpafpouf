@@ -9,7 +9,9 @@
             ).appendTo('body');
         },
         playSound: function () {
-            $("#" + arguments[0] + "")[0].play();
+            var sound = $("#" + arguments[0] + "")[0];
+            sound.currentTime = 0;
+            sound.play();
         },
         stopSound: function () {
             $(".sound-player").remove();

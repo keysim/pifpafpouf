@@ -29,11 +29,11 @@ if(GAME.TYPES > GAME.COLORS.length)
     console.log("[ERROR] Too much type. please fill more color or decrease the Types number.");
 
 var players = [];
-players.push(new Player(0, -50, "left"));
-players.push(new Player(450, -50, "right"));
+players.push(new Player(0, -50, "right"));
+//players.push(new Player(450, -50, "right"));
 
 for(var sound of GAME.SOUNDS)
-    $.createSound(sound, '/assets/sounds/' + sound + '.m4a');
+    $.createSound(sound, '/assets/sounds/' + sound + '.wav');
 
 class Game {
     constructor(){
@@ -76,12 +76,10 @@ class Game {
                 players[i].fall();
         }
         if(everyInterval(8)) {
-            // for(i = 0; players[i]; i++)
-            //     players[i].explode();
             for(i = 0; players[i]; i++)
                 players[i].fall();
         }
-        if(everyInterval(100)) {
+        if(everyInterval(20)) {
             for(i = 0; players[i]; i++)
                 players[i].explode();
         }

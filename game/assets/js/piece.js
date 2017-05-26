@@ -49,6 +49,7 @@ class Piece {
             this.player.grid[this.y + part.y][this.x + part.x] = part.type;
         this.inMove = false;
         this.player.falling = true;
+        this.player.boom = true;
         this.parts = [];
         return true;
     }
