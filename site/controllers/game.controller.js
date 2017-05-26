@@ -3,12 +3,15 @@
 mainApp.controller('gameCtrl', function($scope, $http, $cookies, $window) {
     if(!$cookies.get("login"))
         $window.location.href = "/login";
-    var players = [];
-    players.push(new Player(0, -60, "right"));
-    //players.push(new Player(450, -50, "right"));
 
-    var game = new Game(players);
-    game.start();
+    $scope.play = function () {
+        var players = [];
+        players.push(new Player(0, -GAME.SIZE, "right"));
+        players.push(new Player(GAME.SIZE * 9, -GAME.SIZE, "right"));
+
+        var game = new Game(players);
+        game.start();
+    };
 });
 
 function consoleLog($scope, type, message) {

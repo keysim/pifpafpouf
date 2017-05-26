@@ -4,11 +4,11 @@ var gamepad = new Gamepad();
 gamepad.start();
 
 var GAME = {
-    SCREEN_W: 1080,
-    SCREEN_H: 720,
+    SCREEN_W: 1170,
+    SCREEN_H: 780,
     W:6,
     H:13,
-    SIZE:60,
+    SIZE:65,
     DEFAULT_X:3,
     DEFAULT_Y:1,
     TIC:10,
@@ -39,8 +39,8 @@ class Game {
         this.players = players;
     }
     start() {
-        this.canvas.width(GAME.SCREEN_W);
-        this.canvas.height(GAME.SCREEN_H);
+        // this.canvas.width(GAME.SCREEN_W);
+        // this.canvas.height(GAME.SCREEN_H);
         this.canvas.prop({width:GAME.SCREEN_W, height:GAME.SCREEN_H});
         this.frameNo = 0;
         setInterval(this.update, GAME.TIC, this);

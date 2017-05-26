@@ -7,10 +7,13 @@ mainApp.directive("header", function(){
 });
 
 mainApp.controller('headerCtrl', function($scope, $http, $location, $cookies, $window, gamesock){
+    $scope.logged = false;
     if(!$cookies.get("login"))
-        $scope.email_log = "Login";
-    else
-        $scope.email_log = $cookies.get("login");
+        $scope.nav_login = "Login";
+    else {
+        $scope.logged = true;
+        $scope.nav_login = $cookies.get("login");
+    }
     $scope.goTo = function () {
         if($cookies.get("login"))
             $location.path("/");
