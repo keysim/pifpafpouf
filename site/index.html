@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/game.css">
 </head>
-<body>
+<body ng-controller="mainController as main">
     <header></header>
     <div class="container">
         <div ng-view></div>
+        <div id="game" class="row">
+            <canvas id="canvas">
+                <p>Here is the game...</p>
+            </canvas>
+        </div>
     </div>
     <footer></footer>
 
@@ -29,6 +34,12 @@
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/node_modules/jcanvas/jcanvas.min.js"></script>
+    <script src="/game/js/jquery.playSound.js"></script>
+    <script src="/game/js/gamepad.js"></script>
+    <script src="/game/js/input.js"></script>
+    <script src="/game/js/piece.js"></script>
+    <script src="/game/js/player.js"></script>
+    <script src="/game/game.js"></script>
     <script src="main.js"></script>
     <script src="router.js"></script>
     <script src="controllers/footer.controller.js"></script>
@@ -37,11 +48,5 @@
     <script src="controllers/login.controller.js"></script>
     <script src="controllers/game.controller.js"></script>
     <script src="controllers/options.controller.js"></script>
-    <script src="/game/js/jquery.playSound.js"></script>
-    <script src="/game/js/gamepad.js"></script>
-    <script src="/game/js/input.js"></script>
-    <script src="/game/js/piece.js"></script>
-    <script src="/game/js/player.js"></script>
-    <script src="/game/game.js"></script>
 </body>
 </html>

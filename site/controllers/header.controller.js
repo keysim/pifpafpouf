@@ -14,9 +14,13 @@ mainApp.controller('headerCtrl', function($scope, $http, $location, $cookies, $w
         $scope.logged = true;
         $scope.nav_login = $cookies.get("login");
     }
-    $scope.goTo = function () {
-        if($cookies.get("login"))
-            $location.path("/");
+    $scope.goTo = function (path) {
+        if(path !== "" && path !== "/online")
+            game.hide();
+        if(!$cookies.get("login") && path !== "home" && path !== "login" && path !== "register")
+            $location.path("/login");
+        else
+            $location.path(path);
     };
     $scope.getClass = function (path) {
         return $location.path() === "/" + path ? "active" : "";

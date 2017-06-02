@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-    <h2 class="title nav-center" ng-click="goTo()">PifPafPouf</h2>
+    <h2 class="title nav-center" ng-click="goTo('')">PifPafPouf</h2>
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
@@ -7,17 +7,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="."><img src="images/small.png"></a>
+        <a class="brand" ng-click="goTo('')"><img src="images/small.png"></a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li ng-class="getClass('home')" ng-show="!logged"><a href="home"><i class="fa fa-book fa-lg" aria-hidden="true"></i> <span>Home</span></a></li>
-            <li ng-class="getClass('')" ng-show="logged"><a href="/"><i class="fa fa-desktop fa-lg" aria-hidden="true"></i> <span>Local</span></a></li>
-            <li ng-class="getClass('/online')" ng-show="logged"><a href="/"><i class="fa fa-globe fa-lg" aria-hidden="true"></i> <span>Online</span></a></li>
+            <li ng-class="getClass('home')" ng-show="!logged"><a ng-click="goTo('home')"><i class="fa fa-book fa-lg" aria-hidden="true"></i> <span>Home</span></a></li>
+            <li ng-class="getClass('')" ng-show="logged"><a ng-click="goTo('')"><i class="fa fa-desktop fa-lg" aria-hidden="true"></i> <span>Local</span></a></li>
+            <li ng-class="getClass('online')" ng-show="logged"><a ng-click="goTo('online')"><i class="fa fa-globe fa-lg" aria-hidden="true"></i> <span>Online</span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li class="hidden-xs" ng-class="getClass('options')" ng-show="logged"><a href="options"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> <span></span></a></li>
-            <li ng-class="getClass('login')"><a href="login" ng-show="!logged">Login</a></li>
+            <li ng-class="getClass('options')" ng-show="logged"><a ng-click="goTo('options')"><span class="visible-xs-inline-block">Options</span> <i class="fa fa-sliders fa-lg" aria-hidden="true"></i></a></li>
+            <li ng-class="getClass('login')"><a ng-click="goTo('login')" ng-show="!logged">Login</a></li>
             <li><a ng-click="disconnect()" ng-show="logged" class="disconnect"> {{nav_login}} <i class="fa fa-sign-out fa-lg"></i></a></li>
         </ul>
     </div>

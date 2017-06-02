@@ -3,7 +3,7 @@ var apiUrl = "http://localhost:1234/api/";
 var socketUrl = "http://localhost:1234";
 var postConfig = {headers : {'Content-Type': 'application/json'}};
 
-mainApp.controller('mainController', function() {
+mainApp.controller('mainController', function($scope) {
 });
 
 mainApp.factory('gamesock', function (socketFactory, $cookies) {

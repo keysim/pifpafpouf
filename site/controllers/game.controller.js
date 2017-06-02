@@ -1,17 +1,24 @@
-
+var players = [];
+players.push(new Player(0, -GAME.SIZE, "left"));
+players.push(new Player(GAME.SIZE * 9, -GAME.SIZE, "right"));
+var game = new Game(players);
 
 mainApp.controller('gameCtrl', function($scope, $http, $cookies, $window) {
     if(!$cookies.get("login"))
         $window.location.href = "/login";
-
+    $scope.sound = true;
+    $scope.menu = true;
+    game.show();
     $scope.play = function () {
-        var players = [];
-        players.push(new Player(0, -GAME.SIZE, "right"));
-        players.push(new Player(GAME.SIZE * 9, -GAME.SIZE, "right"));
-
-        var game = new Game(players);
-        game.start();
+        game.toggleMenu();
     };
+    $scope.restart = function () {
+        game.restart();
+    };
+    $scope.toggleSound = function () {
+        $scope.sound = !$scope.sound;
+        game.sound($scope.sound);
+    }
 });
 
 function consoleLog($scope, type, message) {

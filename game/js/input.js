@@ -47,5 +47,7 @@ function padListener() { // TODO Recognize new controller
 }
 
 document.addEventListener('keydown', function(e) {
+    if(e.keyCode == 27)
+        game.toggleMenu();
     input[e.keyCode] = true;
 });

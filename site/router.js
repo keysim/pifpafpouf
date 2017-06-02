@@ -8,6 +8,10 @@ mainApp.config(['$routeProvider', '$locationProvider', function($routeProvider, 
             templateUrl: 'views/options.view.html',
             controller: 'optionsCtrl'
         })
+        .when('/online', {
+            templateUrl: 'views/game.view.html',
+            controller: 'gameCtrl'
+        })
         .when('/home', {
             templateUrl: 'views/home.view.html',
             controller: 'homeCtrl'

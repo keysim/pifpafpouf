@@ -1,15 +1,18 @@
-<div class="row">
-    <div class="row">
-        <div class="text-center">
-            <button type="button" class="btn btn-success" ng-click="play()"> PLAY </button>
-        </div>
-        <br>
-    </div>
-    <div class="row">
-        <div id="game">
-            <canvas id="canvas">
-                <p>Here is the game...</p>
-            </canvas>
+<div class="row" id="menu">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Game menu</div>
+        <div class="panel-body">
+            <div class="row">
+                <button type="button" class="btn btn-success btn-block btn-lg" ng-click="play()"> PLAY </button>
+            </div>
+            <br>
+            <div class="row">
+                <button type="button" class="btn btn-danger btn-block" ng-click="restart()"> RESTART </button>
+            </div>
+            <br>
+            <div class="row">
+                <button type="button" class="btn btn-primary" ng-click="toggleSound()"><i class="fa fa-lg" ng-class="sound ? 'fa-volume-up' : 'fa-volume-off'"></i></button>
+            </div>
         </div>
     </div>
 </div>

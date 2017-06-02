@@ -1,3 +1,4 @@
+var dirs = [{x:-1, y:0}, {x:1, y:0}, {x:0, y:-1}, {x:0, y:1}]; // For checking blocks near
 class Player {
     constructor(offset_x, offset_y, keyMode) {
         if(Player.no === undefined)
@@ -33,6 +34,18 @@ class Player {
         this.boom = false;
         this.explosionList = [];
         this.explodeLvl = 0;
+        this.rocks = 0;
+    }
+    reset(){
+        this.lose = false;
+        this.piece = new Piece(this);
+        this.falling = false;
+        this.boom = false;
+        this.explosionList = [];
+        this.explodeLvl = 0;
+        for (var y = 0; y < GAME.H; y++) // GRID PRINT
+            for (var x = 0; x < GAME.W; x++)
+                this.grid[y][x] = 0;
     }
     update(game) {
         for (var cell of this.background) // BACKGROUND TODO Optimized background
@@ -41,15 +54,44 @@ class Player {
         for (var y = 0; y < GAME.H; y++) // GRID PRINT
             for (var x = 0; x < GAME.W; x++)
                 game.drawBlock(this.offset.x + (x * GAME.SIZE), this.offset.y + (y * GAME.SIZE), this.grid[y][x]);
+
         this.piece.draw(game);
+
         if(!this.falling && !this.piece.inMove && !this.boom && !this.explosionList.length){
             this.explodeLvl = 0;
-            if(!this.piece.next()) {
-                console.log("PLAYER", this.no, ", YOU LOSE");
-                this.lose = true;
+            if(!this.rocks) {
+                if (!this.piece.next()) {
+                    console.log("PLAYER", this.no, ", YOU LOSE");
+                    this.lose = true;
+                    game.toggleMenu();
+                }
             }
+            else
+                this.releaseBlocks();
         }
         this.viewer(game);
+    }
+    giveRocks(num){
+        this.rocks += num;
+    }
+    releaseBlocks(){
+        var i = 0;
+        var tab = [0, 1, 2, 3, 4, 5];
+        if(this.rocks < 6) {
+            for(i = 0; i < this.rocks; i++) {
+                var place = Math.floor((Math.random() * tab.length));
+                var x = tab[place];
+                tab.splice(place, 1);
+                this.grid[0][x] = GAME.ROCK;
+            }
+            this.rocks = 0;
+        }
+        else{
+            for(i = 0; i < 6; i++)
+                this.grid[1][i] = GAME.ROCK;
+            this.rocks -= 6;
+        }
+        this.falling = true;
     }
     inputHandler() {
         var keys = this.input.toTab();
@@ -83,15 +125,19 @@ class Player {
         game.drawBlock(this.offset.x + ((GAME.W + 1) * GAME.SIZE), this.offset.y + (GAME.SIZE), GAME.STACK[this.piece.stackNo + 1]);
         game.drawBlock(this.offset.x + ((GAME.W + 1) * GAME.SIZE), this.offset.y + (GAME.SIZE * 2), GAME.STACK[this.piece.stackNo]);
     }
-    explode() {
-        if(!this.falling && this.explosionList.length === 0)
+    explode(players) {
+        if(!this.falling && this.explosionList.length === 0) {
             this.targetCells();
+            if(this.explosionList.length != 0)
+                for (var i = 0; players[i]; i++)
+                    if(players[i] != this)
+                        players[i].giveRocks((this.explodeLvl + 1) * this.explosionList.length);
+        }
         if(this.explosionList.length > 0){
-            if(this.explodeLvl > 3)
-                this.explodeLvl = 3;
-            $.playSound(GAME.SOUNDS[this.explodeLvl]);
+            $.playSound(GAME.SOUNDS[this.explodeLvl > 3 ? 3 : this.explodeLvl]);
             var cell = this.explosionList.pop();
             this.grid[cell.y][cell.x] = 0;
+            this.explodeCloseRocks(cell);
             if(this.explosionList.length === 0) {
                 this.explodeLvl++;
                 this.falling = true;
@@ -101,10 +147,15 @@ class Player {
         else
             this.boom = false;
     }
+    explodeCloseRocks(cell){
+        for (var dir of dirs)
+            if (this.grid[cell.y + dir.y] && this.grid[cell.y + dir.y][cell.x + dir.x] === 1)
+                this.grid[cell.y + dir.y][cell.x + dir.x] = 0;
+    }
     targetCells() {
         for (var y = 0; y < GAME.H; y++) {
             for (var x = 0; x < GAME.W; x++) {
-                if(this.grid[y][x] !== 0) {
+                if(this.grid[y][x] > 1) { // != 0 and 1
                     var checked = [];
                     rec(this.grid[y][x], x, y, this.grid, checked, this.explosionList);
                     if(checked.length >= 4)
@@ -115,7 +166,7 @@ class Player {
         }
     }
 }
-var dirs = [{x:-1, y:0}, {x:1, y:0}, {x:0, y:-1}, {x:0, y:1}];
+
 function rec(type, x, y, grid, checked, expList) {
     if(!isChecked(x, y, checked, expList)) {
         checked.push({x, y});

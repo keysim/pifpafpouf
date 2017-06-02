@@ -20,8 +20,20 @@
                 }, false);
             }
         },
+        unpauseSound : function () {
+            $("#"+ arguments[0])[0].play();
+        },
+        pauseSound : function () {
+            $("#"+ arguments[0])[0].pause();
+        },
+        muteSound : function () {
+            $("#" + arguments[0]).prop('muted', arguments[1]);
+        },
         stopSound: function () {
             $(".sound-player").remove();
+        },
+        deleteSound: function () {
+            $("#"+ arguments[0]).remove();
         }
     });
 })(jQuery);
