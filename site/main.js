@@ -1,6 +1,6 @@
 var mainApp = angular.module("mainApp", ['ngCookies', 'ngRoute', 'btford.socket-io']);
-var apiUrl = "http://localhost:1234/api/";
-var socketUrl = "http://localhost:1234";
+var apiUrl = "http://92.90.130.123/api/";
+var socketUrl = "http://92.90.130.123";
 var postConfig = {headers : {'Content-Type': 'application/json'}};
 
 mainApp.controller('mainController', function($scope) {
