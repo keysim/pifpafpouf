@@ -58,12 +58,10 @@ class Game {
         $("#menu").toggle();
         this.paused = !this.paused;
         this.pause(this.paused);
-        if(!this.paused) {
+        if(!this.paused)
             $.unpauseSound("music");
-        }
-        else {
+        else
             $.pauseSound("music");
-        }
     }
     sound(on){
         if(on)
@@ -77,11 +75,16 @@ class Game {
     hide(){
         this.game.hide();
     }
-    // start() {
-    //     if(this.loop === -1) {
-    //         this.loop = setInterval(this.update, GAME.TIC, this);
-    //     }
-    // }
+    reset() {
+        for (var i = 0; this.players[i]; i++)
+            this.players[i].reset();
+        $("#menu").show();
+        $.resetSound("music");
+        this.paused = true;
+        $.pauseSound("music");
+        clearInterval(this.loop);
+        this.pause(this.paused);
+    }
     restart() {
         for (var i = 0; this.players[i]; i++)
             this.players[i].reset();

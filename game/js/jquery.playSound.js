@@ -29,8 +29,8 @@
         muteSound : function () {
             $("#" + arguments[0]).prop('muted', arguments[1]);
         },
-        stopSound: function () {
-            $(".sound-player").remove();
+        resetSound: function () {
+            $("#"+ arguments[0])[0].currentTime = 0;
         },
         deleteSound: function () {
             $("#"+ arguments[0]).remove();
